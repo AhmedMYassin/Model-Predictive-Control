@@ -15,16 +15,20 @@ MPC is an optimization problem so we define the vehicle model, the cost function
 ### Vehicle States and Actuators
 
 Vehicle states are:
+```
 - X_Position
 - Y_Position
 - Orientation Angle
 - Velocity
 - Cross track error
 - Orientation error
+```
 
 The Vehicle Actuators are:
+```
 - Steering Angle
 - Acceleration
+```
 
 ### Vehicle Model
 
@@ -35,6 +39,7 @@ The vehicle model is used to predict the next vehicle state as following:
 ### Cost Function 
 
 The cost function helps to get us the most fit trajectory to the reference. The cost function includes:
+```
 - Cross track error 
 - Orientation error
 - Velocity deviation from target velocity (40 mph)
@@ -42,6 +47,7 @@ The cost function helps to get us the most fit trajectory to the reference. The 
 - Acceleration 
 - Steering angle change
 - Acceleration change 
+```
 
 ### Timestep and Elapsed Duration
 
@@ -49,9 +55,9 @@ The cost function helps to get us the most fit trajectory to the reference. The 
 N = 10
 dt = 0.1
 ```
-I used higher vlaues for N (15,20,25) but due to the increase of the number of timesteps the cost function wasn't able to reduse the error which affected the vlaues of steering angle in curves. 
+I used higher vlaues for N `15 ,20 ,25` but due to the increase of the number of timesteps the cost function wasn't able to reduse the error which affected the vlaues of steering angle in curves. 
 
-Also using 0.1 for elapsed duration was better than (0.05 and 0.08) due to the `100 ms` latency. 
+Also using 0.1 for elapsed duration was better than `0.05 & 0.08` due to the `100 ms` latency. 
 
 Check the result from [Here](https://github.com/AhmedMYassin/Model-Predictive-Control/blob/master/Data/result.mp4).
 
