@@ -1,7 +1,49 @@
+[//]: # (Image References)
+[image1]: ./Data/MPC.png
+
 # CarND-Controls-MPC
 Self-Driving Car Engineer Nanodegree Program
 
 ---
+## Overview
+MPC (Model Predictive Control) method is used as an alternative to the classic PID controller. From the environment and the vehicle state, we know the trajectory that the vehicle should follow. Based on the kinematic vehicle model, we can predict the the vehicle trajectory. Our main role is to select the best steering angle and acceleration value that make the difference between the predicted trajectory and the reference as low as possible.
+
+Using the reference trajectory points (x,y), we can define a polynomial equation to represent the the vehicle path. In this project I used a 3rd degree polynomial equation. 1st degree equation wasn't helpful in road curves and 2nd degree equation wasn't helpful in complex parts of the road that has 2 consecutive curves.
+
+MPC is an optimization problem so we define the vehicle model, the cost function, the vehicle states and actutators and the vehicle constraints.
+
+### Vehicle States and Actuators
+
+Vehicle states are:
+- X_Position
+- Y_Position
+- Orientation Angle
+- Velocity
+- Cross track error
+- Orientation error
+
+The Vehicle Actuators are:
+- Steering Angle
+- Acceleration
+
+### Vehicle Model
+
+The vehicle model is used to predict the next vehicle state as following:
+
+![alt text][image1]
+
+### Cost Function 
+
+The cost function helps to get us the most fit trajectory to the reference. The cost function includes:
+- Cross track error 
+- Orientation error
+- Velocity deviation from target velocity (40 mph)
+- Steering angle
+- Acceleration 
+- Steering angle change
+- Acceleration change 
+
+Check the result from [Here](https://github.com/AhmedMYassin/Model-Predictive-Control/blob/master/Data/result.mp4).
 
 ## Dependencies
 
@@ -38,71 +80,4 @@ Self-Driving Car Engineer Nanodegree Program
 3. Compile: `cmake .. && make`
 4. Run it: `./mpc`.
 
-## Tips
 
-1. It's recommended to test the MPC on basic examples to see if your implementation behaves as desired. One possible example
-is the vehicle starting offset of a straight line (reference). If the MPC implementation is correct, after some number of timesteps
-(not too many) it should find and track the reference line.
-2. The `lake_track_waypoints.csv` file has the waypoints of the lake track. You could use this to fit polynomials and points and see of how well your model tracks curve. NOTE: This file might be not completely in sync with the simulator so your solution should NOT depend on it.
-3. For visualization this C++ [matplotlib wrapper](https://github.com/lava/matplotlib-cpp) could be helpful.)
-4.  Tips for setting up your environment are available [here](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/f758c44c-5e40-4e01-93b5-1a82aa4e044f/concepts/23d376c7-0195-4276-bdf0-e02f1f3c665d)
-5. **VM Latency:** Some students have reported differences in behavior using VM's ostensibly a result of latency.  Please let us know if issues arise as a result of a VM environment.
-
-## Editor Settings
-
-We've purposefully kept editor configuration files out of this repo in order to
-keep it as simple and environment agnostic as possible. However, we recommend
-using the following settings:
-
-* indent using spaces
-* set tab width to 2 spaces (keeps the matrices in source code aligned)
-
-## Code Style
-
-Please (do your best to) stick to [Google's C++ style guide](https://google.github.io/styleguide/cppguide.html).
-
-## Project Instructions and Rubric
-
-Note: regardless of the changes you make, your project must be buildable using
-cmake and make!
-
-More information is only accessible by people who are already enrolled in Term 2
-of CarND. If you are enrolled, see [the project page](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/f1820894-8322-4bb3-81aa-b26b3c6dcbaf/lessons/b1ff3be0-c904-438e-aad3-2b5379f0e0c3/concepts/1a2255a0-e23c-44cf-8d41-39b8a3c8264a)
-for instructions and the project rubric.
-
-## Hints!
-
-* You don't have to follow this directory structure, but if you do, your work
-  will span all of the .cpp files here. Keep an eye out for TODOs.
-
-## Call for IDE Profiles Pull Requests
-
-Help your fellow students!
-
-We decided to create Makefiles with cmake to keep this project as platform
-agnostic as possible. Similarly, we omitted IDE profiles in order to we ensure
-that students don't feel pressured to use one IDE or another.
-
-However! I'd love to help people get up and running with their IDEs of choice.
-If you've created a profile for an IDE that you think other students would
-appreciate, we'd love to have you add the requisite profile files and
-instructions to ide_profiles/. For example if you wanted to add a VS Code
-profile, you'd add:
-
-* /ide_profiles/vscode/.vscode
-* /ide_profiles/vscode/README.md
-
-The README should explain what the profile does, how to take advantage of it,
-and how to install it.
-
-Frankly, I've never been involved in a project with multiple IDE profiles
-before. I believe the best way to handle this would be to keep them out of the
-repo root to avoid clutter. My expectation is that most profiles will include
-instructions to copy files to a new location to get picked up by the IDE, but
-that's just a guess.
-
-One last note here: regardless of the IDE used, every submitted project must
-still be compilable with cmake and make./
-
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
