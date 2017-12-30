@@ -43,6 +43,16 @@ The cost function helps to get us the most fit trajectory to the reference. The 
 - Steering angle change
 - Acceleration change 
 
+### Timestep and Elapsed Duration
+
+```
+N = 10
+dt = 0.1
+```
+I used higher vlaues for N (15,20,25) but due to the increase of the number of timesteps the cost function wasn't able to reduse the error which affected the vlaues of steering angle in curves. 
+
+Also using 0.1 for elapsed duration was better than (0.05 and 0.08) due to the `100 ms` latency. 
+
 Check the result from [Here](https://github.com/AhmedMYassin/Model-Predictive-Control/blob/master/Data/result.mp4).
 
 ## Dependencies
