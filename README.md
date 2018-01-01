@@ -59,7 +59,7 @@ I used higher vlaues for N `15 ,20 ,25` but due to the increase of the number of
 
 Also using 0.1 for elapsed duration was better than `0.05 & 0.08` due to the `100 ms` latency. 
 
-To overcome the latency problem, I use a predicted state using the vehicle model and the current vehicle state. The prediction step is using `0.1` elapsed duaration which is equal to the latency time `100 ms`
+To overcome the latency problem, I used a predicted state based on the vehicle model and the current vehicle state. The prediction step is using `0.1` elapsed duaration which is equal to the latency time `100 ms`
 
 Check the result from [Here](https://github.com/AhmedMYassin/Model-Predictive-Control/blob/master/Data/result.mp4).
 
