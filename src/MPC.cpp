@@ -47,7 +47,7 @@ class FG_eval {
     // the Solver function below.
 
 	// The part of the cost based on the reference state.
-	double v_ref = 40;
+	double v_ref = 40 * 0.44704;
 
 	const int cte_weight = 3000;
 	const int epsi_weight = 3000;
@@ -253,8 +253,8 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   // {...} is shorthand for creating a vector, so auto x1 = {1.0,2.0}
   // creates a 2 element double vector.
   vector<double> solved;
-  solved.push_back(solution.x[delta_start]);
-  solved.push_back(solution.x[a_start]);
+  solved.push_back(solution.x[delta_start + 1]);
+  solved.push_back(solution.x[a_start + 1]);
 
   for (size_t i = 0; i < N-1; ++i)
   {
